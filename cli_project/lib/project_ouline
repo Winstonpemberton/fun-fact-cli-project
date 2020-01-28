@@ -1,0 +1,19 @@
+1. choose what you want to make your cli about
+I think it'll be interesting to have a cli that tell you fun facts.
+
+2. choose a website to scrape
+WTF fun facts is a perfect place to find fun facts, I've been using it for years and it holds all the information
+Im going to need.
+
+3. Decide to go from the outside in or the opposite
+After watching all the walkthrough videos with Avi, I think inside out would be the best way to go about this.
+it just seems like I'll catch things that or think about things better starting from the smallest and going bigger
+
+4. How many classes
+Five class to start with. Facts, Categories, Scraper, Menu, CLI console
+Facts have names, dates, descriptions, sources
+Categories have names, facts
+Scraper scrapes information about categories and facts
+Menu is going to have a call method to actually run the program, greets the user, gives them the option
+to choose a category or get a random fact
+CLI console will have one line and that's just calling the call method in the menu class
