@@ -1,4 +1,4 @@
-require "version_module/version"
+#require "version_module/version"
 
 module CliProject
   class Error < StandardError; end
