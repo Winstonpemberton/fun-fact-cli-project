@@ -1,21 +1,12 @@
 require 'open-uri'
-require "Nokogiri"
+# require "Nokogiri"
 require 'pry'
 
 class Scraper
 
   def scrape_main_page
-    # create a container to for Nokogiri to work
-    # Nokogiri::HTML(open(url))
-    # create a empty array
-    # iterate through the student-card class to get the students name, location and profile url
-    # create variables to house information and use .text for name and location since they have just text information
-    # create variables to house information and use .attribute().value for profile url since its a HTML link
-    # create a hash and assign keys and put the values as the variables created before
-    # put the hash inside the array
-    # return the array
-  # def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open("https://wtffunfact.com/"))
+    binding.pry
 
     doc.css("div.student-card").collect do |student|
       student_name = student.css("h4.student-name").text
