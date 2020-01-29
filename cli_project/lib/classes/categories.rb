@@ -4,6 +4,4 @@ class Categoreies
   def initialize
     @facts = []
   end
-
-
 end
