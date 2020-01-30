@@ -1,5 +1,6 @@
 class Categoreies
-  attr_accessor :names, :facts
+  attr_accessor :name, :facts
+  @@all = []
 
   def initialize
     @facts = []

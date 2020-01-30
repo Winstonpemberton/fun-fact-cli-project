@@ -15,3 +15,5 @@ puts "hello"
 
 require "irb"
 #IRB.start(__FILE__)
+
+Menu.new.call
