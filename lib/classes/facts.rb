@@ -14,4 +14,20 @@ class Facts
     @@all
   end
 
+  def display_fact
+    puts "#{self.name}"
+    puts "#{self.date}"
+    puts "#{self.description}"
+    puts "#{self.source_info}"
+  end
+
+  def random_fact
+    Facts.all.sample
+  end
+
+  def open_source_info
+    system("open #{self.source_info}")
+  end
+
+
 end

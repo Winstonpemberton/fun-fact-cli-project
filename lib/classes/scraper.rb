@@ -13,7 +13,6 @@ class Scraper
     "https://wtffunfact.com/movie-facts/","https://wtffunfact.com/people-facts/","https://wtffunfact.com/places-facts/","https://wtffunfact.com/sports/",
     "https://wtffunfact.com/tech-facts/","https://wtffunfact.com/uncategorized/","https://wtffunfact.com/weird-facts/"]
 
-    #scrape_catagories.css("ul li.cat-item").collect do |categories|
     scrape_catagories.css("ul li.cat-item a").each_with_index do |category, index|
       category = Categories.new
       category.name = category_names[index]
