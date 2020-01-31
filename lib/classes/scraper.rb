@@ -15,9 +15,11 @@ class Scraper
 
     #scrape_catagories.css("ul li.cat-item").collect do |categories|
     scrape_catagories.css("ul li.cat-item a").each_with_index do |category, index|
-      category = Categoreies.new
+      category = Categories.new
       category.name = category_names[index]
       category.facts = scrape_fact_info(fact_page_urls[index])
+      Categories.all << category
+      binding.pry
     end
   end
 
@@ -26,17 +28,18 @@ class Scraper
     facts = []
 
     scrape_facts.css("article").collect do |fact|
+
       name = fact.css("h2.entry-title").text.split(" – ")[1]
       date = fact.css("time.entry-date").text
       description_source_url = fact.css("div p a").attribute("href").value
       description_source_info = Nokogiri::HTML(open(description_source_url))
       description = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[0]
       source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[1]
+      fact_object = Facts.new(name, date, description, source_info)
 
-
-      binding.pry
+      facts << fact_object
+      Facts.all << fact_object
     end
-
+    facts
   end
-
 end
