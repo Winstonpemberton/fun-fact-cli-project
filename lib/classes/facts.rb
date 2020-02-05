@@ -1,13 +1,12 @@
 class Facts
-  attr_accessor :name, :date, :description, :source_info
+  attr_accessor :name, :date, :description
 
   @@all = []
 
-  def initialize(name,date,description,source_info)
+  def initialize(name,date,description)
     @name = name
     @date = date
     @description = description
-    @source_info = source_info
   end
 
   def self.all
@@ -18,16 +17,15 @@ class Facts
     puts "#{self.name}"
     puts "#{self.date}"
     puts "#{self.description}"
-    puts "#{self.source_info}"
   end
 
-  def random_fact
+  def self.random_fact
     Facts.all.sample
   end
 
-  def open_source_info
-    system("open #{self.source_info}")
-  end
-
+  # def open_source_info
+  #   system("open #{self.source_info.url}") if !nil
+  # end
+  #
 
 end
