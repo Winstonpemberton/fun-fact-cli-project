@@ -7,19 +7,19 @@ class Scraper
   def self.scrape_main_page
     scrape_catagories = Nokogiri::HTML(open("https://wtffunfact.com/"))
     category_names = scrape_catagories.css("ul li.cat-item a").text.split /(?=[A-Z])/
+    category_names.delete("Health")
 
     fact_page_urls = ["https://wtffunfact.com/animal-facts/","https://wtffunfact.com/awesome-facts/","https://wtffunfact.com/food-facts/",
     "https://wtffunfact.com/gaming-facts/","https://wtffunfact.com/history-facts/","https://wtffunfact.com/laws-facts/",
     "https://wtffunfact.com/movie-facts/","https://wtffunfact.com/people-facts/","https://wtffunfact.com/places-facts/","https://wtffunfact.com/sports/",
     "https://wtffunfact.com/tech-facts/","https://wtffunfact.com/uncategorized/","https://wtffunfact.com/weird-facts/"]
     #,"https://wtffunfact.com/health-facts/"
-    scrape_catagories.css("ul li.cat-item a").each_with_index do |category, index|
+    category_names.each_with_index do |category, index|
       category = Categories.new
       name = category_names[index]
       category.name = name.to_s
       category.facts = scrape_fact_info(fact_page_urls[index])
-      Categories.all << category
-      #binding.pry
+      Categories.all << category if !nil
     end
   end
 

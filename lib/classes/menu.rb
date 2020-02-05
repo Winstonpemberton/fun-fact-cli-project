@@ -3,7 +3,7 @@ class Menu
     Scraper.scrape_main_page
     puts " welcome to the Fun Fact Generator, if you want to see all the categories enter 1 if you
     just want a random fact press 2 and if you want to exit the program enter exit"
-    input = gets.chomp.lowercase
+    input = gets.chomp
     until input == "1" || input == "2" || input == "exit"
       case input
         when "1"
@@ -11,7 +11,7 @@ class Menu
         when "2"
           Facts.random_fact
         when "exit"
-          #break
+          break
         else
         puts " invalid input, please try again "
       end
@@ -25,7 +25,7 @@ class Menu
       fact.display_facts
       # puts "would you like to open the source page, [Y/N]"
       # input = gets.chomp.lowercase
-      # if input == "y"
+      # if input == "y"6
       #   fact.open_source
       # end
       input = gets.chomp
