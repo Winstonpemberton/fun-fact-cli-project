@@ -10,10 +10,12 @@ require "./config/environment"
 # (If you use this, don't forget to add pry to your Gemfile!)
 require "pry"
 #Pry.start
-
-puts "hello"
+Menu.start
+puts "Please wait, loading facts...."
+sleep 10
+puts "A little bit longer"
+sleep 15
+puts "I swear it's not frozen"
 
 require "irb"
 #IRB.start(__FILE__)
-
-Menu.start

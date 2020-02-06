@@ -14,8 +14,8 @@ class Facts
   end
 
   def display_fact
-    puts "#{self.name}"
-    puts "#{self.date}"
+    puts "\n#{self.name}"
+    puts "\n#{self.date}"
     puts "#{self.description}"
   end
 
