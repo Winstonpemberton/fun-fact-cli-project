@@ -6,7 +6,7 @@ require "./config/environment"
 
 require "pry"
 puts "Please wait, loading facts...."
-sleep 5
+sleep 3
 puts "I swear it's not frozen"
 Menu.start
 

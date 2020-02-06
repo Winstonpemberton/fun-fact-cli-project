@@ -16,11 +16,9 @@ class Scraper
     #,"https://wtffunfact.com/health-facts/"
     category_names.each_with_index do |category, index|
       category = Categories.new
-      name = category_names[index]
-      category.name = name.to_s
+      category.name = category_names[index]
       category.facts = scrape_fact_info(fact_page_urls[index])
-      Categories.all << category if !nil
-      binding.pry
+      Categories.all << category
     end
   end
 
@@ -35,8 +33,12 @@ class Scraper
       description_source_url = fact.css("div p a").attribute("href").value
       description_source_info = Nokogiri::HTML(open(description_source_url))
       description = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[0]
-      #source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[1]
-      fact_object = Facts.new(name, date, description)
+      source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[1]
+      if source_info == nil
+        description = description_source_info.css("div.inside-article p").text.split(" – WTF Fun FactsSource: ")[0]
+        source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun FactsSource: ")[1]
+      end
+      fact_object = Facts.new(name, date, description, source_info)
 
       facts << fact_object
       Facts.all << fact_object
