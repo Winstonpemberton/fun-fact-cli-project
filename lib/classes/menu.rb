@@ -5,10 +5,10 @@ class Menu
   end
 
   def self.menu
-    puts " welcome to the Fun Fact Generator, if you want to see all the categories enter 1 if you
-    just want a random fact press 2 and if you want to exit the program enter 3"
+    puts "\nWelcome to the Fun Fact Generator"
     input = 0
     until input == 1 || input == 3
+      puts "\nIf you want to see all the categories enter 1, if you just want a random fact press 2 and if you want to exit the program enter 3"
       input = gets.chomp.to_i
     #binding.pry
       if input == 1
@@ -17,7 +17,7 @@ class Menu
         Facts.random_fact
       elsif input == 3
       else
-         puts " invalid input, please try again "
+         puts " Invalid input, please try again "
       end
     end
   end

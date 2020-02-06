@@ -20,7 +20,7 @@ class Facts
   end
 
   def self.random_fact
-    Facts.all.sample
+    self.all.sample.display_fact
   end
 
   # def open_source_info

@@ -5,8 +5,8 @@ require 'pry'
 class Scraper
 
   def self.scrape_main_page
-    scrape_catagories = Nokogiri::HTML(open("https://wtffunfact.com/"))
-    category_names = scrape_catagories.css("ul li.cat-item a").text.split /(?=[A-Z])/
+    scrape_categories = Nokogiri::HTML(open("https://wtffunfact.com/"))
+    category_names = scrape_categories.css("ul li.cat-item a").text.split /(?=[A-Z])/
     category_names.delete("Health")
 
     fact_page_urls = ["https://wtffunfact.com/animal-facts/","https://wtffunfact.com/awesome-facts/","https://wtffunfact.com/food-facts/",
@@ -20,6 +20,7 @@ class Scraper
       category.name = name.to_s
       category.facts = scrape_fact_info(fact_page_urls[index])
       Categories.all << category if !nil
+      binding.pry
     end
   end
 
@@ -30,14 +31,11 @@ class Scraper
     scrape_facts.css("article").collect do |fact|
 
       name = fact.css("h2.entry-title").text.split(" – ")[1]
-      name.to_s
       date = fact.css("time.entry-date").text
-      date.to_s
       description_source_url = fact.css("div p a").attribute("href").value
       description_source_info = Nokogiri::HTML(open(description_source_url))
-      description = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[0] #if !nil
-      description.to_s
-      #source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[1] unless !nil
+      description = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[0]
+      #source_info = description_source_info.css("div.inside-article p").text.split(" – WTF Fun Facts Source: ")[1]
       fact_object = Facts.new(name, date, description)
 
       facts << fact_object
