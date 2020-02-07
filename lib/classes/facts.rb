@@ -38,6 +38,4 @@ class Facts
         system "xdg-open #{link}"
       end
   end
-
-
 end
