@@ -25,11 +25,18 @@ class Facts
   end
 
   def open_source_info
-  system("open -a Google Chrome #{self.source_info}")
+  #system("open -a Google Chrome #{self.source_info}")
   #Launchy::Browser.run(self.source_info)
     # browser = Watir::Browser.new
     # browser.goto(self.source_info)
-      #system("open #{@newsletter.articles[input.to_i-1].url}")
+    link = self.source_info.chomp
+      if RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+        system "start #{link}"
+      elsif RbConfig::CONFIG['host_os'] =~ /darwin/
+        system "open #{link}"
+      elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+        system "xdg-open #{link}"
+      end
   end
 
 
