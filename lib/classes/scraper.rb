@@ -9,12 +9,13 @@ class Scraper
     category_names = scrape_categories.css("ul li.cat-item a").text.split /(?=[A-Z])/
     category_names.delete("Health")
     category_names.delete("Animals")
-
     fact_page_urls = ["https://wtffunfact.com/awesome-facts/","https://wtffunfact.com/food-facts/",
     "https://wtffunfact.com/gaming-facts/","https://wtffunfact.com/history-facts/","https://wtffunfact.com/laws-facts/",
     "https://wtffunfact.com/movie-facts/","https://wtffunfact.com/people-facts/","https://wtffunfact.com/places-facts/", "https://wtffunfact.com/science/",
     "https://wtffunfact.com/sports/","https://wtffunfact.com/tech-facts/","https://wtffunfact.com/uncategorized/","https://wtffunfact.com/weird-facts/"]
     #,"https://wtffunfact.com/health-facts/, "https://wtffunfact.com/animal-facts/"
+    # scrape_categories.css(".cat-item").each do |cate|
+    # puts cate.css("a").attribute("href").value
     category_names.each_with_index do |category, index|
       category = Categories.new
       category.name = category_names[index]
